@@ -1,0 +1,58 @@
+/* Verdana San Sebastián — Typography tokens
+   Serif display (Cormorant Garamond) for headlines & the wordmark voice.
+   Geometric sans (Montserrat) for UI, body, and tracked eyebrow labels.
+
+   Synced from the Claude Design project (tokens/typography.css). The two
+   families are loaded and self-hosted by next/font in app/layout.tsx —
+   --font-serif / --font-sans are rebound to those in styles/base.css. */
+:root {
+  --font-serif: 'Cormorant Garamond', 'Hoefler Text', Georgia, serif;
+  --font-sans:  'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Roles */
+  --font-display: var(--font-serif); /* big elegant headlines */
+  --font-heading: var(--font-sans);  /* section headings / UI titles */
+  --font-body:    var(--font-sans);  /* paragraphs, UI text */
+  --font-eyebrow: var(--font-sans);  /* tracked uppercase labels */
+
+  /* Weights */
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* Display scale (serif) — px */
+  --fs-display-xl: 92px;
+  --fs-display-lg: 68px;
+  --fs-display-md: 48px;
+  --fs-display-sm: 36px;
+
+  /* Heading scale (sans) */
+  --fs-h1: 34px;
+  --fs-h2: 26px;
+  --fs-h3: 20px;
+  --fs-h4: 16px;
+
+  /* Body / UI scale */
+  --fs-lg: 18px;
+  --fs-md: 16px;
+  --fs-sm: 14px;
+  --fs-xs: 12px;
+
+  /* Eyebrow / label */
+  --fs-eyebrow: 13px;
+
+  /* Line heights */
+  --lh-tight: 1.04;
+  --lh-snug: 1.18;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.7;
+
+  /* Letter spacing */
+  --ls-display: -0.01em;
+  --ls-normal: 0;
+  --ls-eyebrow: 0.28em;
+  --ls-caps: 0.14em;
+  --ls-button: 0.08em;
+}

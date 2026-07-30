@@ -1,0 +1,526 @@
+/* Verdana San Sebastián — component styles.
+
+   The design system authors these components with inline styles and JS mouse
+   handlers. Ported to CSS here so the components stay React Server Components
+   (no client bundle), gain real :focus-visible / :active states, and honour
+   prefers-reduced-motion. Every value below is the design system's own —
+   variant state is carried on data-* attributes, matching the data-variant /
+   data-on-brand hooks the source components already emitted. */
+
+/* ------------------------------------------------------------------ Button */
+
+.vss-btn {
+  display: inline-flex;
+  width: auto;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 26px;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-button);
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+  border: var(--border-hair) solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background var(--dur-base) var(--ease-standard),
+    color var(--dur-base) var(--ease-standard),
+    border-color var(--dur-base) var(--ease-standard),
+    transform var(--dur-fast) var(--ease-standard);
+}
+
+.vss-btn[data-size='sm'] {
+  padding: 9px 18px;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.vss-btn[data-size='lg'] {
+  padding: 17px 34px;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.vss-btn[data-full='true'] {
+  display: flex;
+  width: 100%;
+}
+
+/* Variants on light (cream) surfaces */
+.vss-btn[data-variant='primary'] {
+  background: var(--green-700);
+  color: var(--cream-100);
+  border-color: var(--green-700);
+}
+
+.vss-btn[data-variant='secondary'] {
+  background: transparent;
+  color: var(--green-700);
+  border-color: var(--green-600);
+}
+
+.vss-btn[data-variant='accent'] {
+  background: var(--gold-500);
+  color: var(--green-900);
+  border-color: var(--gold-500);
+}
+
+.vss-btn[data-variant='ghost'] {
+  background: transparent;
+  color: var(--green-700);
+  border-color: transparent;
+}
+
+.vss-btn[data-variant='link'] {
+  padding: 0;
+  background: transparent;
+  color: var(--green-700);
+  border-color: transparent;
+  text-transform: none;
+  letter-spacing: var(--ls-normal);
+  text-decoration: underline;
+  text-decoration-color: var(--gold-500);
+  text-underline-offset: 4px;
+}
+
+/* Variants on dark green surfaces */
+.vss-btn[data-on-brand='true'][data-variant='primary'] {
+  background: var(--gold-500);
+  color: var(--green-900);
+  border-color: var(--gold-500);
+}
+
+.vss-btn[data-on-brand='true'][data-variant='secondary'] {
+  background: transparent;
+  color: var(--cream-100);
+  border-color: var(--border-on-brand);
+}
+
+.vss-btn[data-on-brand='true'][data-variant='accent'] {
+  background: var(--cream-100);
+  color: var(--green-800);
+  border-color: var(--cream-100);
+}
+
+.vss-btn[data-on-brand='true'][data-variant='ghost'] {
+  background: transparent;
+  color: var(--cream-100);
+  border-color: transparent;
+}
+
+.vss-btn[data-on-brand='true'][data-variant='link'] {
+  color: var(--gold-300);
+}
+
+/* Hover — always darken or fill, never lighten or scale up. */
+@media (hover: hover) {
+  .vss-btn[data-variant='primary']:hover {
+    background: var(--green-800);
+    border-color: var(--green-800);
+  }
+
+  .vss-btn[data-variant='secondary']:hover {
+    background: var(--green-700);
+    color: var(--cream-100);
+  }
+
+  .vss-btn[data-variant='accent']:hover {
+    background: var(--gold-600);
+    border-color: var(--gold-600);
+  }
+
+  .vss-btn[data-variant='ghost']:hover {
+    background: var(--cream-200);
+  }
+
+  .vss-btn[data-variant='link']:hover {
+    color: var(--green-800);
+  }
+
+  .vss-btn[data-on-brand='true'][data-variant='primary']:hover {
+    background: var(--gold-400);
+    border-color: var(--gold-400);
+  }
+
+  .vss-btn[data-on-brand='true'][data-variant='secondary']:hover,
+  .vss-btn[data-on-brand='true'][data-variant='ghost']:hover {
+    background: var(--on-brand-wash);
+    color: var(--cream-100);
+  }
+
+  .vss-btn[data-on-brand='true'][data-variant='accent']:hover {
+    background: var(--cream-300);
+    border-color: var(--cream-300);
+  }
+
+  .vss-btn[data-on-brand='true'][data-variant='link']:hover {
+    color: var(--gold-200);
+  }
+}
+
+/* Press — 1px down, no resize. */
+.vss-btn:active {
+  transform: translateY(1px);
+}
+
+.vss-btn[data-variant='link']:active {
+  transform: none;
+}
+
+/* Gold is the interaction colour: translucent ring + gold border. */
+.vss-btn:focus-visible {
+  outline: none;
+  border-color: var(--gold-500);
+  box-shadow: 0 0 0 var(--ring-width) var(--focus-ring-shadow);
+}
+
+.vss-btn:disabled,
+.vss-btn[aria-disabled='true'] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* -------------------------------------------------------------------- Card */
+
+.vss-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: var(--border-hair) solid var(--border-subtle);
+  background: var(--surface-card);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+  transition:
+    box-shadow var(--dur-base) var(--ease-standard),
+    transform var(--dur-base) var(--ease-standard);
+}
+
+.vss-card[data-variant='cream'] {
+  background: var(--surface-raised);
+}
+
+.vss-card[data-variant='green'] {
+  background: var(--green-700);
+  color: var(--cream-100);
+  border-color: var(--green-700);
+}
+
+.vss-card[data-variant='outline'] {
+  background: transparent;
+  border-color: var(--border-default);
+  box-shadow: none;
+}
+
+.vss-card[data-interactive='true'] {
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .vss-card[data-interactive='true']:hover,
+  .vss-card[data-interactive='true']:focus-within {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+}
+
+.vss-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: var(--space-6);
+}
+
+.vss-card__body[data-padding='none'] {
+  padding: 0;
+}
+
+.vss-card__body[data-padding='sm'] {
+  padding: var(--space-4);
+}
+
+.vss-card__body[data-padding='lg'] {
+  padding: var(--space-7);
+}
+
+/* ------------------------------------------------------------------- Badge */
+
+.vss-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-button);
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+  border: var(--border-hair) solid transparent;
+  border-radius: var(--radius-pill);
+  background: var(--cream-300);
+  color: var(--ink-700);
+  --vss-badge-dot: var(--ink-500);
+}
+
+.vss-badge[data-size='sm'] {
+  padding: 3px 9px;
+  gap: 5px;
+  font-size: 10.5px;
+}
+
+.vss-badge[data-variant='available'] {
+  background: rgba(76, 106, 85, 0.14);
+  color: var(--green-700);
+  --vss-badge-dot: var(--green-600);
+}
+
+.vss-badge[data-variant='sold'] {
+  background: rgba(154, 75, 59, 0.12);
+  color: var(--danger);
+  --vss-badge-dot: var(--danger);
+}
+
+.vss-badge[data-variant='accent'] {
+  background: var(--gold-500);
+  color: var(--green-900);
+  --vss-badge-dot: var(--green-900);
+}
+
+.vss-badge[data-variant='green'] {
+  background: var(--green-700);
+  color: var(--cream-100);
+  --vss-badge-dot: var(--gold-400);
+}
+
+.vss-badge[data-variant='outline'] {
+  background: transparent;
+  color: var(--green-700);
+  border-color: var(--border-accent);
+  --vss-badge-dot: var(--gold-500);
+}
+
+.vss-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--vss-badge-dot);
+}
+
+/* ----------------------------------------------------------------- Eyebrow */
+
+.vss-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  justify-content: flex-start;
+  font-family: var(--font-eyebrow);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--gold-600);
+}
+
+.vss-eyebrow[data-align='center'] {
+  justify-content: center;
+}
+
+.vss-eyebrow[data-tone='green'] {
+  color: var(--green-700);
+}
+
+.vss-eyebrow[data-tone='muted'] {
+  color: var(--text-muted);
+}
+
+.vss-eyebrow[data-tone='on-brand'] {
+  color: var(--gold-300);
+}
+
+.vss-eyebrow__rule {
+  flex: none;
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+/* -------------------------------------------------------------------- Stat */
+
+.vss-stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  align-items: flex-start;
+  text-align: left;
+}
+
+.vss-stat[data-align='center'] {
+  align-items: center;
+  text-align: center;
+}
+
+.vss-stat__value {
+  font-family: var(--font-serif);
+  font-size: var(--fs-display-md);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  letter-spacing: var(--ls-display);
+  white-space: nowrap;
+  color: var(--green-700);
+}
+
+.vss-stat__label {
+  font-family: var(--font-sans);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.vss-stat__sublabel {
+  max-width: 220px;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  color: var(--text-muted);
+}
+
+.vss-stat[data-size='sm'] .vss-stat__value {
+  font-size: var(--fs-display-sm);
+}
+
+.vss-stat[data-size='sm'] .vss-stat__label {
+  font-size: var(--fs-xs);
+}
+
+.vss-stat[data-size='lg'] .vss-stat__value {
+  font-size: var(--fs-display-lg);
+}
+
+.vss-stat[data-size='lg'] .vss-stat__label {
+  font-size: var(--fs-sm);
+}
+
+.vss-stat[data-tone='gold'] .vss-stat__value {
+  color: var(--gold-600);
+}
+
+.vss-stat[data-tone='on-brand'] .vss-stat__value {
+  color: var(--gold-300);
+}
+
+.vss-stat[data-tone='on-brand'] .vss-stat__label,
+.vss-stat[data-tone='on-brand'] .vss-stat__sublabel {
+  color: var(--text-on-brand);
+}
+
+/* ------------------------------------------------------------------- Input */
+
+.vss-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.vss-field__label {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--green-700);
+}
+
+.vss-field__input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-regular);
+  color: var(--ink-900);
+  background: var(--white);
+  border: var(--border-hair) solid var(--border-default);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition:
+    border-color var(--dur-base) var(--ease-standard),
+    box-shadow var(--dur-base) var(--ease-standard);
+}
+
+.vss-field__input::placeholder {
+  color: var(--ink-400);
+}
+
+.vss-field__input:focus {
+  border-color: var(--gold-500);
+  box-shadow: 0 0 0 var(--ring-width) var(--focus-ring-shadow);
+}
+
+.vss-field__message {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.vss-field__message[data-error='true'] {
+  color: var(--danger);
+}
+
+.vss-field__input[aria-invalid='true'],
+.vss-field__input[aria-invalid='true']:focus {
+  border-color: var(--danger);
+  box-shadow: none;
+}
+
+/* On dark green panels */
+.vss-field[data-on-brand='true'] .vss-field__label {
+  color: var(--gold-300);
+}
+
+.vss-field[data-on-brand='true'] .vss-field__input {
+  color: var(--cream-100);
+  background: var(--on-brand-field);
+  border-color: var(--border-on-brand);
+}
+
+.vss-field[data-on-brand='true'] .vss-field__input::placeholder {
+  color: var(--on-brand-placeholder);
+}
+
+.vss-field[data-on-brand='true'] .vss-field__message {
+  color: var(--on-brand-text-faint);
+}
+
+/* -------------------------------------------------------------------- Logo */
+
+.vss-logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.vss-logo__emblem {
+  display: inline-flex;
+}
+
+.vss-logo__emblem > svg {
+  display: block;
+  height: 100%;
+  width: auto;
+}
+
+.vss-logo__wordmark {
+  display: flex;
+  flex-direction: column;
+}

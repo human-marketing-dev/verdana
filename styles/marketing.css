@@ -1,0 +1,701 @@
+/* Verdana San Sebastián — marketing site sections.
+
+   Ported from the approved landing page ("Verdana Landing"). That page is a
+   desktop-only mock built with inline styles; every desktop value is preserved
+   here, with the breakpoints a shipped site needs added on top.
+
+   Layout rule from the mock: every section — header and footer included —
+   shares ONE column width (.vss-container). Sections alternate cream, deep
+   green and raised cream for rhythm; the hero, master plan panel and sales
+   office are inset rounded cards rather than full-bleed bands. */
+
+/* ------------------------------------------------------- Shared section bits */
+
+.vss-section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 4.2vw, 46px);
+  font-weight: var(--fw-semibold);
+  line-height: 1.06;
+  color: var(--green-700);
+  margin: 14px 0 0;
+}
+
+.vss-section-title[data-on-brand='true'] {
+  color: var(--cream-50);
+}
+
+.vss-section-lede {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-700);
+  margin: 0;
+}
+
+.vss-prose {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--ink-700);
+  margin: 0;
+}
+
+.vss-prose + .vss-prose {
+  margin-top: var(--space-4);
+}
+
+/* ------------------------------------------------------------------ Header */
+
+.vss-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(247, 241, 226, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: var(--border-hair) solid var(--border-subtle);
+}
+
+.vss-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding-block: var(--space-4);
+}
+
+.vss-header__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.vss-header__link {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.04em;
+  color: var(--ink-700);
+  text-decoration: none;
+  text-underline-offset: 6px;
+  transition: color var(--dur-base) var(--ease-standard);
+}
+
+@media (hover: hover) {
+  .vss-header__link:hover {
+    color: var(--green-700);
+    text-decoration: underline;
+    text-decoration-color: var(--gold-500);
+  }
+}
+
+/* Below 980px the inline nav crowds the logo and CTA. Every link points at a
+   section of this one page, and the footer sitemap repeats them all. */
+@media (max-width: 980px) {
+  .vss-header__nav {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------- Inset image panel (base) */
+
+/* The hero and the sales office share one shape: a rounded, shadowed card
+   inset in the column, with a full-bleed render behind a protection gradient. */
+.vss-panel {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  background: var(--green-800);
+}
+
+.vss-panel__media {
+  object-fit: cover;
+}
+
+.vss-panel__content {
+  position: relative;
+  color: var(--cream-100);
+}
+
+/* -------------------------------------------------------------------- Hero */
+
+.vss-hero {
+  padding-top: 40px;
+}
+
+.vss-hero__panel {
+  align-items: flex-end;
+  height: 600px;
+}
+
+@media (max-width: 760px) {
+  .vss-hero__panel {
+    height: auto;
+    min-height: 520px;
+  }
+}
+
+/* Protection gradient — deep at the top and bottom so the serif headline and
+   the lede hold against the dusk render. */
+.vss-hero__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(24, 51, 31, 0.8) 0%,
+    rgba(24, 51, 31, 0.66) 38%,
+    rgba(24, 51, 31, 0.95) 100%
+  );
+}
+
+.vss-hero__content {
+  max-width: 780px;
+  padding: 0 clamp(var(--space-5), 4vw, 56px) clamp(var(--space-7), 4vw, 52px);
+}
+
+@media (max-width: 760px) {
+  .vss-hero__content {
+    padding-top: clamp(var(--space-7), 12vw, 96px);
+  }
+
+  /* A portrait crop of a 3:2 render centres on empty sky. Bias it toward the
+     lit stone sign, and ease the mid-stop so the render still reads through. */
+  .vss-hero__panel .vss-panel__media {
+    object-position: 32% 62%;
+  }
+
+  .vss-hero__scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(24, 51, 31, 0.66) 0%,
+      rgba(24, 51, 31, 0.52) 34%,
+      rgba(24, 51, 31, 0.94) 100%
+    );
+  }
+}
+
+.vss-hero__title {
+  margin: var(--space-4) 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(38px, 6vw, 74px);
+  font-weight: var(--fw-semibold);
+  line-height: 1.02;
+  letter-spacing: var(--ls-display);
+}
+
+.vss-hero__lede {
+  max-width: 540px;
+  margin: 20px 0 30px;
+  font-family: var(--font-sans);
+  font-size: var(--fs-lg);
+  line-height: 1.6;
+  color: rgba(247, 241, 226, 0.92);
+}
+
+.vss-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+/* ----------------------------------------------------------- El proyecto */
+
+.vss-project {
+  padding: clamp(var(--space-8), 8vw, var(--space-9)) 0 clamp(var(--space-7), 6vw, 72px);
+}
+
+.vss-project__intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-9);
+  align-items: start;
+}
+
+.vss-project__body {
+  padding-top: var(--space-2);
+}
+
+.vss-project__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+  margin-top: var(--space-8);
+  padding-top: var(--space-7);
+  border-top: var(--border-hair) solid var(--border-subtle);
+}
+
+@media (max-width: 900px) {
+  .vss-project__intro {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .vss-project__body {
+    padding-top: 0;
+  }
+
+  .vss-project__stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-7) var(--space-6);
+  }
+}
+
+@media (max-width: 460px) {
+  .vss-project__stats {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+/* -------------------------------------------------------------- Master plan */
+
+.vss-plan {
+  background: var(--green-800);
+  color: var(--cream-100);
+}
+
+.vss-plan__inner {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: var(--space-9);
+  align-items: center;
+  padding-block: clamp(var(--space-8), 8vw, 88px);
+}
+
+@media (max-width: 980px) {
+  .vss-plan__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+}
+
+.vss-plan__lede {
+  margin: 18px 0 28px;
+  font-family: var(--font-sans);
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: rgba(247, 241, 226, 0.84);
+}
+
+.vss-plan__legend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 20px;
+  margin-bottom: var(--space-7);
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 460px) {
+  .vss-plan__legend {
+    grid-template-columns: 1fr;
+  }
+}
+
+.vss-plan__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: rgba(247, 241, 226, 0.9);
+}
+
+.vss-plan__swatch {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: var(--vss-swatch);
+}
+
+.vss-plan__label {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--gold-300);
+}
+
+.vss-plan__streets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  padding: 0;
+  list-style: none;
+}
+
+/* Outline badge recoloured for the dark green surface. */
+.vss-plan__streets .vss-badge {
+  color: var(--gold-300);
+  border-color: var(--border-on-brand);
+}
+
+/* The plan drawing is near-square and printed on warm paper, close in value to
+   --cream-50. The frame keeps a hairline so it still reads as a mounted sheet,
+   and centres the sheet rather than stretching it to the column. */
+.vss-plan__frame {
+  display: flex;
+  justify-content: center;
+  background: var(--cream-50);
+  border: var(--border-hair) solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-lg);
+}
+
+.vss-plan__image {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 660px;
+  border-radius: var(--radius-sm);
+}
+
+@media (max-width: 980px) {
+  .vss-plan__image {
+    max-height: none;
+  }
+}
+
+/* ---------------------------------------------------------------- Ubicación */
+
+.vss-location {
+  padding-block: clamp(var(--space-8), 8vw, var(--space-9));
+}
+
+.vss-location .vss-section-title {
+  max-width: 640px;
+  margin-bottom: var(--space-2);
+}
+
+.vss-location__lede {
+  max-width: 560px;
+  margin: 0 0 44px;
+}
+
+.vss-location__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+@media (max-width: 820px) {
+  .vss-location__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+}
+
+/* Gold rule above each point — the accent as a structural device. */
+.vss-location__point {
+  border-top: var(--border-thick) solid var(--gold-500);
+  padding-top: var(--space-4);
+}
+
+.vss-location__point-title {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-sans);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-semibold);
+  color: var(--green-700);
+}
+
+.vss-location__point-desc {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-500);
+}
+
+/* ---------------------------------------------------------------- Identidad */
+
+.vss-identity {
+  background: var(--cream-200);
+  border-top: var(--border-hair) solid var(--border-subtle);
+  border-bottom: var(--border-hair) solid var(--border-subtle);
+}
+
+.vss-identity__inner {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-9);
+  align-items: center;
+  padding-block: clamp(var(--space-8), 8vw, 88px);
+}
+
+@media (max-width: 900px) {
+  .vss-identity__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+}
+
+.vss-identity .vss-section-title {
+  max-width: 520px;
+  margin-bottom: 18px;
+}
+
+.vss-identity__prose {
+  max-width: 480px;
+  font-size: 16.5px;
+}
+
+.vss-identity__figure {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  line-height: 0;
+}
+
+.vss-identity__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* --------------------------------------------------------- Caseta de ventas */
+
+.vss-sales {
+  padding-bottom: clamp(var(--space-8), 8vw, var(--space-9));
+}
+
+.vss-sales__panel {
+  align-items: center;
+  /* Copy sits right: the left of this render is the stone wall carrying the
+     wordmark and tagline, and stacking the heading on it collides two
+     lockups. The mock put the copy left over a render that had open road
+     there. Right keeps the caseta and its signage unobstructed. */
+  justify-content: flex-end;
+  min-height: 480px;
+}
+
+/* Bias the crop upward so the "Caseta de ventas" fascia stays in frame and the
+   asphalt in the foreground falls out of it. */
+.vss-sales__panel .vss-panel__media {
+  object-position: 50% 46%;
+}
+
+/* Horizontal scrim — the mid stop sits past the 560px copy column (~46% of the
+   panel) so the address line doesn't fall on the lit foliage. */
+.vss-sales__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    270deg,
+    rgba(24, 51, 31, 0.9) 0%,
+    rgba(24, 51, 31, 0.78) 46%,
+    rgba(24, 51, 31, 0.05) 78%
+  );
+}
+
+@media (max-width: 760px) {
+  /* At narrow widths a side fade leaves the text over open render, so the
+     panel goes full width under a vertical scrim, matching the hero. */
+  .vss-sales__panel {
+    justify-content: flex-start;
+  }
+
+  .vss-sales__scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(24, 51, 31, 0.75) 0%,
+      rgba(24, 51, 31, 0.8) 60%,
+      rgba(24, 51, 31, 0.92) 100%
+    );
+  }
+}
+
+.vss-sales__content {
+  max-width: 560px;
+  padding: clamp(var(--space-6), 5vw, 56px);
+}
+
+.vss-sales__title {
+  margin: 14px 0 var(--space-4);
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 4.4vw, 48px);
+  font-weight: var(--fw-semibold);
+  line-height: 1.04;
+}
+
+.vss-sales__lede {
+  margin: 0 0 14px;
+  font-family: var(--font-sans);
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: rgba(247, 241, 226, 0.9);
+}
+
+.vss-sales__address {
+  margin: 0 0 28px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(247, 241, 226, 0.78);
+}
+
+/* ----------------------------------------------------------------- Contacto */
+
+.vss-contact {
+  background: var(--cream-200);
+  border-top: var(--border-hair) solid var(--border-subtle);
+}
+
+.vss-contact__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-9);
+  align-items: center;
+  padding-block: clamp(var(--space-8), 8vw, 88px);
+}
+
+@media (max-width: 900px) {
+  .vss-contact__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+}
+
+.vss-contact .vss-section-title {
+  max-width: 460px;
+  margin-bottom: var(--space-4);
+  font-size: clamp(32px, 4vw, 44px);
+}
+
+.vss-contact__lede {
+  max-width: 420px;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  line-height: 1.65;
+  color: var(--ink-700);
+}
+
+.vss-contact__panel {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-7);
+}
+
+@media (max-width: 560px) {
+  .vss-contact__panel {
+    padding: var(--space-5);
+  }
+}
+
+.vss-contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.vss-contact__submit {
+  margin-top: var(--space-2);
+}
+
+.vss-contact__success {
+  text-align: center;
+  padding-block: 28px;
+}
+
+.vss-contact__success-title {
+  margin: 18px 0 var(--space-2);
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: var(--fw-semibold);
+  color: var(--green-700);
+}
+
+.vss-contact__success-body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--ink-500);
+}
+
+/* ------------------------------------------------------------------ Footer */
+
+.vss-footer {
+  background: var(--green-900);
+  color: var(--cream-100);
+}
+
+.vss-footer__inner {
+  padding-top: var(--space-8);
+}
+
+.vss-footer__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  padding-bottom: var(--space-7);
+}
+
+.vss-footer__columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-9);
+}
+
+@media (max-width: 560px) {
+  .vss-footer__columns {
+    gap: var(--space-7);
+  }
+}
+
+.vss-footer__column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.vss-footer__heading {
+  margin-bottom: var(--space-1);
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--gold-400);
+}
+
+.vss-footer__link {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  color: rgba(247, 241, 226, 0.78);
+  text-decoration: none;
+  text-underline-offset: 5px;
+  transition: color var(--dur-base) var(--ease-standard);
+}
+
+@media (hover: hover) {
+  .vss-footer__link:hover {
+    color: var(--gold-300);
+    text-decoration: underline;
+  }
+}
+
+.vss-footer__base {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding-block: 20px;
+  border-top: var(--border-hair) solid var(--border-on-brand);
+}
+
+.vss-footer__fineprint {
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  color: var(--on-brand-text-faint);
+}

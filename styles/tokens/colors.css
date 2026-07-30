@@ -1,0 +1,81 @@
+/* Verdana San Sebastián — Color tokens
+   Sampled from brand palette sheet, logo lockups and entrance render.
+   Nature + understated luxury: forest green, antique gold, warm cream.
+
+   Synced from the Claude Design project "Verdana San Sebastián Design System"
+   (tokens/colors.css). Keep in sync — do not edit values ad hoc. */
+:root {
+  /* ---- Forest green (primary) ---- */
+  --green-900: #18331F; /* deepest — hero overlays, footers */
+  --green-800: #20402A; /* logo plate green */
+  --green-700: #2C4A34; /* PRIMARY brand green */
+  --green-600: #385446; /* logo stroke green */
+  --green-500: #4C6A55; /* muted, secondary text on cream */
+  --green-400: #708A77; /* dividers / disabled green */
+
+  /* ---- Antique gold / brass (accent) ---- */
+  --gold-700: #9C7E4C; /* pressed accent */
+  --gold-600: #B08D57; /* hover accent */
+  --gold-500: #C2A56B; /* PRIMARY accent (richest legible gold) */
+  --gold-400: #CBB88F; /* brand swatch gold */
+  --gold-300: #DBC39D; /* light gold — on green plates */
+  --gold-200: #E8DCC2; /* faint gold tint */
+
+  /* ---- Cream / paper ---- */
+  --cream-50:  #FBF8F0; /* lightest page */
+  --cream-100: #F7F1E2; /* default page */
+  --cream-200: #F5EDD6; /* brand cream swatch */
+  --cream-300: #ECE2C9; /* raised cream surface */
+
+  /* ---- Warm neutrals (green-tinted graphite) ---- */
+  --ink-900: #1C211D; /* primary text */
+  --ink-700: #3A413B; /* strong body text */
+  --ink-500: #6B7269; /* secondary text */
+  --ink-400: #8E948B; /* tertiary / captions */
+  --ink-300: #C3C5BD; /* hairline borders on cream */
+  --ink-200: #DCDCD2; /* subtle borders */
+  --white:   #FFFFFF;
+
+  /* ---- Semantic ---- */
+  --success: #4C6A55;
+  --warning: #B08D57;
+  --danger:  #9A4B3B;
+  --info:    #4C6A55;
+
+  /* ---- Semantic aliases ---- */
+  --brand:            var(--green-700);
+  --brand-strong:     var(--green-800);
+  --accent:           var(--gold-500);
+  --accent-strong:    var(--gold-600);
+
+  --bg-page:          var(--cream-100);
+  --bg-page-alt:      var(--cream-50);
+  --surface-card:     var(--white);
+  --surface-raised:   var(--cream-200);
+  --surface-inverse:  var(--green-700);
+  --surface-inverse-deep: var(--green-900);
+
+  --text-primary:     var(--ink-900);
+  --text-secondary:   var(--ink-500);
+  --text-muted:       var(--ink-400);
+  --text-on-brand:    var(--cream-100);
+  --text-on-brand-soft: var(--gold-300);
+  --text-accent:      var(--green-700);
+
+  --border-subtle:    var(--ink-200);
+  --border-default:   var(--ink-300);
+  --border-accent:    var(--gold-400);
+  --border-on-brand:  rgba(219, 195, 157, 0.32);
+
+  --focus-ring:       var(--gold-500);
+
+  /* Translucent cream — used on dark green surfaces (header blur, hairlines,
+     secondary text). Derived from --cream-100; kept as tokens so the alpha
+     values in the design system aren't hard-coded across components. */
+  --on-brand-text-soft: rgba(247, 241, 226, 0.82);
+  --on-brand-text-faint: rgba(247, 241, 226, 0.6);
+  --on-brand-wash: rgba(247, 241, 226, 0.1);
+  --on-brand-field: rgba(247, 241, 226, 0.06);
+  --on-brand-placeholder: rgba(247, 241, 226, 0.5);
+  --focus-ring-shadow: rgba(194, 165, 107, 0.22);
+}

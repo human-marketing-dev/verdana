@@ -1,0 +1,8 @@
+<svg viewBox="0 0 100 124" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Verdana emblem">
+  <ellipse cx="50" cy="56" rx="31" ry="42" stroke="currentColor" stroke-width="2.4"></ellipse>
+  <path d="M50 22 C50 22 33 40 33 62 C33 78 41 90 50 96 C59 90 67 78 67 62 C67 40 50 22 50 22 Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"></path>
+  <line x1="50" y1="30" x2="50" y2="92" stroke="currentColor" stroke-width="2.4"></line>
+  <path d="M50 47 C44 47 39 51 39 57 C39 63 44 67 50 67" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path>
+  <line x1="50" y1="57" x2="62" y2="48" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></line>
+  <line x1="50" y1="72" x2="61" y2="64" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></line>
+</svg>
